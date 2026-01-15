@@ -1,0 +1,181 @@
+/* =========================================
+   1. 基本設定（全ページ共通）
+   ========================================= */
+:root {
+    --primary: #00d2ff;      /* メイン水色 */
+    --accent: #3a7bd5;       /* アクセント青 */
+    --bg: #05080a;           /* 背景色（黒） */
+    --card-bg: #111820;      /* カード背景 */
+    --text: #ffffff;         /* メイン文字色 */
+    --text-dim: #a0aec0;     /* 控えめな文字色 */
+}
+
+* {
+    box-sizing: border-box; /* サイズ計算を正確にする設定 */
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden; /* スマホでの横揺れ防止 */
+}
+
+/* =========================================
+   2. ナビゲーション（全ページ共通）
+   ========================================= */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo { 
+    font-size: 22px; 
+    font-weight: 900; 
+    color: var(--primary); 
+    text-decoration: none; 
+    letter-spacing: 2px;
+}
+
+.nav-links { 
+    list-style: none; 
+    display: flex; 
+    gap: 30px; 
+    margin: 0; 
+    padding: 0;
+}
+
+.nav-links a { 
+    color: var(--text); 
+    text-decoration: none; 
+    font-size: 14px; 
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { color: var(--primary); }
+
+/* =========================================
+   3. レイアウト構造
+   ========================================= */
+.container { 
+    padding: 80px 8%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+h1 { 
+    font-size: 3.5rem; 
+    margin-bottom: 30px; 
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+h2 { color: var(--primary); margin-top: 40px; }
+
+/* グリッド（サービス・解決策・カード用） */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
+}
+
+/* =========================================
+   4. 会社概要・表（about.html用）
+   ========================================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+th, td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+th { background: rgba(255, 255, 255, 0.02); color: var(--primary); width: 30%; }
+
+/* =========================================
+   5. 【重要】レスポンシブ対応 (画面幅768px以下)
+   ========================================= */
+@media (max-width: 768px) {
+    /* ナビゲーションを調整 */
+    nav {
+        flex-direction: column; /* 上下にロゴとメニューを分ける */
+        padding: 15px 5%;
+    }
+
+    .nav-links {
+        margin-top: 15px;
+        gap: 15px;
+        flex-wrap: wrap; /* 折り返し許可 */
+        justify-content: center;
+    }
+
+    .nav-links li { margin: 0; }
+
+    /* コンテンツの余白を狭める */
+    .container { padding: 40px 5%; }
+
+    h1 { font-size: 2.2rem; }
+
+    /* 全てのグリッドを強制的に1列に */
+    .grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* 表（Table）をスマホで見やすく縦並びに変換 */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    th {
+        width: 100%;
+        background: transparent;
+        padding-bottom: 5px;
+        color: var(--primary);
+    }
+
+    td {
+        padding-top: 5px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* 解決策ページなどのフレックスボックスを縦並びにする */
+    [style*="display: flex"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+}
