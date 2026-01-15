@@ -2,8 +2,58 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>航迪株式会社 | 次世代ITソリューションと戦略的コンテンツ制作</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>航迪株式会社 | ITソリューションとコンテンツ制作</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* 针对首页的特殊响应式补丁 */
+        .hero-section {
+            padding: 120px 0 60px;
+            text-align: left;
+        }
+
+        .hero-title {
+            font-size: clamp(2rem, 8vw, 3.8rem); /* 自动根据屏幕宽度在2rem到3.8rem之间切换 */
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-desc {
+            font-size: clamp(1rem, 4vw, 1.25rem);
+            max-width: 800px;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+
+        /* 按钮在手机上自动居中或调整大小 */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap; /* 空间不足时自动换行 */
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 0 40px;
+                text-align: center; /* 手机端居中显示更美观 */
+            }
+            .hero-title {
+                margin-top: 20px;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            /* 首页那三个卡片在手机上由横排变竖排 */
+            .grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="nav-placeholder"></div>
